@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@hypernym/nuxt-gsap'
+    '@hypernym/nuxt-gsap',
+    '@vueuse/nuxt',
   ]
 })
