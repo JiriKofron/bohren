@@ -3,6 +3,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@hypernym/nuxt-gsap'
+    '@nuxtjs/eslint-module',
+    '@hypernym/nuxt-gsap',
+    '@vueuse/nuxt',
   ]
 })
