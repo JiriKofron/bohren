@@ -8,33 +8,43 @@ const { width, height } = useElementSize(canvasWrapper)
 
 onMounted(() => {
   const ctx = (raindrops.value as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D
+
+  /* setTimeout(() => {
+    createRaindrop(ctx)
+  }, 200) */
+
   setInterval(createRaindrop, 200, ctx)
 })
 
 const createRaindrop = (ctx: CanvasRenderingContext2D) => {
-  ctx.beginPath()
   const x = Math.floor(Math.random() * width.value)
-  const y = Math.floor(Math.random() * height.value)
+  let y = Math.floor(Math.random() * height.value)
   const radius = Math.floor(Math.random() * (11 - 3) + 3)
 
-  ctx.filter = 'contrast(1.7) brightness(1.7) saturate(1.5) drop-shadow(0 2px 1px white)'
-  ctx.fillStyle = 'transparent'
+  const drop = () => {
+    window.requestAnimationFrame(drop)
+    ctx.filter = 'contrast(1.7) brightness(1.7) saturate(1.5) drop-shadow(0 2px 1px white)'
+    ctx.fillStyle = 'transparent'
 
-  ctx.arc(x, y, radius, 0, 1.5 * Math.PI)
-  ctx.closePath()
+    ctx.beginPath()
+    ctx.arc(x, y, radius, 0, 1.5 * Math.PI)
+    ctx.closePath()
+    ctx.fill()
 
-  ctx.fill()
+    const img = new Image()
+    img.classList.add('rain')
+    img.src = '/img/midnight_rain3.png'
 
-  const img = new Image()
-  img.classList.add('rain')
-  img.src = '/img/midnight_rain3.png'
+    img.addEventListener('load', function () {
+      ctx.clearRect(x - radius, y - radius, radius * 2, radius * 2)
 
-  img.addEventListener('load', function () {
-    ctx.setTransform(1, 0, 0, 1, x, y)
-    ctx.rotate(Math.floor(Math.random() * 360) * Math.PI / 180)
-    ctx.drawImage(img, x - 2, y - 2, radius - 1, radius - 1)
-    ctx.save()
-  }, true)
+      ctx.drawImage(img, x - 2, y - 2, radius - 1, radius - 1)
+    }, true)
+
+    y += 1
+  }
+
+  window.requestAnimationFrame(drop)
 }
 
 </script>
