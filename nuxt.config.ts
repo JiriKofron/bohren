@@ -6,5 +6,10 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@hypernym/nuxt-gsap',
     '@vueuse/nuxt',
-  ]
+    '@nuxtjs/i18n'
+  ],
+
+  i18n: {
+    vueI18n: './i18n.config.ts'
+  }
 })
