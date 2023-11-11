@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useElementSize } from '@vueuse/core'
 import { vIntersectionObserver } from '@vueuse/components'
+import { definePageMeta } from '#imports'
 
 const canvasWrapper = ref()
 const raindrops = ref()
@@ -10,6 +11,10 @@ const raindropInterval = ref()
 const dropInterval = ref()
 
 const { width, height } = useElementSize(canvasWrapper)
+
+definePageMeta({
+  layout: 'default'
+})
 
 onMounted(() => {
   const rainDropsCtx = (raindrops.value as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D
@@ -21,7 +26,17 @@ onMounted(() => {
   setTimeout(() => {
     rainDropsCtx.clearRect(0, 0, width.value, height.value)
     dropCtx.clearRect(0, 0, width.value, height.value)
-  }, 5 * 60 * 1000)
+  }, 60 * 1000)
+
+  setTimeout(() => {
+    clearInterval(raindropInterval.value)
+    clearInterval(dropInterval.value)
+  }, 2 * 60 * 1000)
+})
+
+onUnmounted(() => {
+  clearInterval(raindropInterval.value)
+  clearInterval(dropInterval.value)
 })
 
 const createRaindrop = (ctx: CanvasRenderingContext2D) => {

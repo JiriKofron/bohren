@@ -1,0 +1,11 @@
+{
+  "welcome": "de",
+  "menu": {
+    "news": "denews",
+    "discography": "dediscography",
+    "biography": "debiography",
+    "videos": "devideos",
+    "contact": "decontact",
+    "shop": "deshop"
+  }
+}

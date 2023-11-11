@@ -1,0 +1,11 @@
+{
+  "welcome": "en",
+  "menu": {
+    "news": "news",
+    "discography": "discography",
+    "biography": "biography",
+    "videos": "videos",
+    "contact": "contact",
+    "shop": "shop"
+  }
+}
