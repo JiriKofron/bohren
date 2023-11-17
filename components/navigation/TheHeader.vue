@@ -6,6 +6,11 @@ const { locale } = useI18n()
 const localePath = useLocalePath()
 
 const menuItems: MenuItem[] = data
+const showMenu = ref(true)
+
+const toggleMenu = () => {
+  showMenu.value = !showMenu.value
+}
 </script>
 
 <template>
@@ -19,7 +24,9 @@ const menuItems: MenuItem[] = data
           & DER CLUB OF GORE
         </div>
       </div>
-      <div class="flex flex-auto items-center justify-around max-w-lg">
+      <div
+        class="hidden md:flex flex-auto items-center justify-around max-w-lg"
+      >
         <NuxtLink
           v-for="menuItem in menuItems"
           :key="menuItem.id"
@@ -29,18 +36,20 @@ const menuItems: MenuItem[] = data
         </NuxtLink>
       </div>
 
-      <LangSwitch />
+      <!--      <LangSwitch />-->
 
-      <div>
-        merch
-      </div>
-
-      <div>
-        Menu
-      </div>
+      <button
+        class="font-heading text-2xl outline outline-1 outline-white outline-offset-1 px-3"
+        @click="toggleMenu"
+      >
+        MENU
+      </button>
     </nav>
 
-    <HamburgerMenu />
+    <HamburgerMenu
+      v-if="showMenu"
+      v-model="showMenu"
+    />
   </div>
 </template>
 

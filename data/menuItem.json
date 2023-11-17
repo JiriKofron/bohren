@@ -21,6 +21,11 @@
     },
     {
       "id": 5,
+      "name": "menu.shop",
+      "to": "/shop"
+    },
+    {
+      "id": 6,
       "name": "menu.contact",
       "to": "/contact"
     }

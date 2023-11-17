@@ -24,9 +24,9 @@ onMounted(() => {
   dropInterval.value = setInterval(createDrop, Math.floor(Math.random() * (16700 - 9000) + 9000), dropCtx)
 
   setTimeout(() => {
-    rainDropsCtx.clearRect(0, 0, width.value, height.value)
-    dropCtx.clearRect(0, 0, width.value, height.value)
-  }, 60 * 1000)
+    rainDropsCtx.reset()
+    dropCtx.reset()
+  }, 90 * 1000)
 
   setTimeout(() => {
     clearInterval(raindropInterval.value)
@@ -105,12 +105,9 @@ const createDrop = (ctx: CanvasRenderingContext2D) => {
 
 const stopAnimation = ([{ isIntersecting }]: [{isIntersecting: boolean}]) => {
   if (!isIntersecting) {
-    console.log('out of view')
     clearInterval(raindropInterval.value)
     clearInterval(dropInterval.value)
   }
-
-  console.log('in view')
 }
 
 </script>
