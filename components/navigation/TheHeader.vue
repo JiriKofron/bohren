@@ -6,7 +6,7 @@ const { locale } = useI18n()
 const localePath = useLocalePath()
 
 const menuItems: MenuItem[] = data
-const showMenu = ref(true)
+const showMenu = ref(false)
 
 const toggleMenu = () => {
   showMenu.value = !showMenu.value
