@@ -1,18 +1,42 @@
 <script setup lang="ts">
 import { useElementSize } from '@vueuse/core'
+import { vIntersectionObserver } from '@vueuse/components'
+import { definePageMeta } from '#imports'
 
 const canvasWrapper = ref()
 const raindrops = ref()
 const drops = ref()
+const landingPage = ref()
+const raindropInterval = ref()
+const dropInterval = ref()
 
 const { width, height } = useElementSize(canvasWrapper)
+
+definePageMeta({
+  layout: 'default'
+})
 
 onMounted(() => {
   const rainDropsCtx = (raindrops.value as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D
   const dropCtx = (drops.value as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D
 
-  setInterval(createRaindrop, Math.floor(Math.random() * (200 - 100) + 100), rainDropsCtx)
-  setInterval(createDrop, Math.floor(Math.random() * (16700 - 9000) + 9000), dropCtx)
+  raindropInterval.value = setInterval(createRaindrop, Math.floor(Math.random() * (200 - 100) + 100), rainDropsCtx)
+  dropInterval.value = setInterval(createDrop, Math.floor(Math.random() * (16700 - 9000) + 9000), dropCtx)
+
+  setTimeout(() => {
+    rainDropsCtx.reset()
+    dropCtx.reset()
+  }, 90 * 1000)
+
+  setTimeout(() => {
+    clearInterval(raindropInterval.value)
+    clearInterval(dropInterval.value)
+  }, 2 * 60 * 1000)
+})
+
+onUnmounted(() => {
+  clearInterval(raindropInterval.value)
+  clearInterval(dropInterval.value)
 })
 
 const createRaindrop = (ctx: CanvasRenderingContext2D) => {
@@ -79,19 +103,28 @@ const createDrop = (ctx: CanvasRenderingContext2D) => {
   window.requestAnimationFrame(drop)
 }
 
+const stopAnimation = ([{ isIntersecting }]: [{isIntersecting: boolean}]) => {
+  if (!isIntersecting) {
+    clearInterval(raindropInterval.value)
+    clearInterval(dropInterval.value)
+  }
+}
+
 </script>
 
 <template>
-  <main class="relative w-full h-screen">
-    <div class="absolute left-0 top-0 w-full h-screen landing bg-origin-border bg-center bg-no-repeat bg-cover blur-sm z-1" />
-    <div ref="canvasWrapper" class="absolute left-0 top-0 w-full h-screen">
-      <canvas ref="raindrops" :width="width" :height="height" class="h-screen" />
-    </div>
-    <div class="absolute left-0 top-0 w-full h-screen">
-      <canvas ref="drops" :width="width" :height="height" class="h-screen" />
-    </div>
-    <section class="absolute left-0 top-0 w-full h-screen z-100 flex items-center justify-center">
-      BOHREN
+  <main class="w-full h-screen">
+    <section ref="landingPage" v-intersection-observer="stopAnimation" class="relative w-full h-screen">
+      <div class="absolute left-0 top-0 w-full h-screen landing bg-origin-border bg-center bg-no-repeat bg-cover blur-sm z-1" />
+      <div ref="canvasWrapper" class="absolute left-0 top-0 w-full h-screen">
+        <canvas ref="raindrops" :width="width" :height="height" class="h-screen" />
+      </div>
+      <div class="absolute left-0 top-0 w-full h-screen">
+        <canvas ref="drops" :width="width" :height="height" class="h-screen" />
+      </div>
+      <section class="absolute left-0 top-0 w-full h-screen z-100 flex items-center justify-center">
+        BOHREN {{ $t('welcome') }}
+      </section>
     </section>
   </main>
 </template>

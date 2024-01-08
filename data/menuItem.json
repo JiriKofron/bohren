@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "name": "menu.news",
+      "to": "/"
+    },
+    {
+      "id": 2,
+      "name": "menu.biography",
+      "to": "/biography"
+    },
+    {
+      "id": 3,
+      "name": "menu.discography",
+      "to": "/discography"
+    },
+    {
+      "id": 4,
+      "name": "menu.videos",
+      "to": "/media"
+    },
+    {
+      "id": 5,
+      "name": "menu.shop",
+      "to": "/shop"
+    },
+    {
+      "id": 6,
+      "name": "menu.contact",
+      "to": "/contact"
+    }
+  ]
