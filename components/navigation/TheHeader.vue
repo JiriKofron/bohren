@@ -2,6 +2,7 @@
 import data from '@/data/menuItem.json'
 import type { MenuItem } from '~/types/types'
 import HamburgerMenu from '~/components/navigation/HamburgerMenu.vue'
+
 const { locale } = useI18n()
 const localePath = useLocalePath()
 
@@ -39,7 +40,7 @@ const toggleMenu = () => {
       <!--      <LangSwitch />-->
 
       <button
-        class="font-heading text-2xl outline outline-1 outline-white outline-offset-1 px-3"
+        class=" md:hidden font-heading text-2xl outline outline-1 outline-white outline-offset-1 px-3"
         @click="toggleMenu"
       >
         MENU

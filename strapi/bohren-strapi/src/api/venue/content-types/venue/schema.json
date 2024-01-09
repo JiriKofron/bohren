@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "venues",
+  "info": {
+    "singularName": "venue",
+    "pluralName": "venues",
+    "displayName": "Venue",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "concerts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::concert.concert",
+      "inversedBy": "venues"
+    }
+  }
+}
