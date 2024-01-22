@@ -2,6 +2,6 @@
  * concert service
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from '@strapi/strapi'
 
-export default factories.createCoreService('api::concert.concert');
+export default factories.createCoreService('api::concert.concert')

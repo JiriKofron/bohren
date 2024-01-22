@@ -4,4 +4,4 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::venue.venue');
+export default factories.createCoreController('api::venue.venue')

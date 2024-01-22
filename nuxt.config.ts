@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    publicToken: process.env.PUBLIC_BEARER_TOKEN,
+    strapiUrl: process.env.STRAPI_LOCAL_URL
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/eslint-module',
