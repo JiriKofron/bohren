@@ -115,7 +115,7 @@ const stopAnimation = ([{ isIntersecting }]: [{isIntersecting: boolean}]) => {
 <template>
   <main class="w-full bg-black text-white">
     <section ref="landingPage" v-intersection-observer="stopAnimation" class="relative w-full h-screen">
-      <div class="absolute left-0 top-0 w-full h-screen landing bg-origin-border bg-center bg-no-repeat bg-cover blur-sm z-1" />
+      <div class="absolute left-0 top-0 w-full h-screen landing bg-origin-border bg-center bg-no-repeat bg-cover bg-fixed blur-sm z-1" />
       <div ref="canvasWrapper" class="absolute left-0 top-0 w-full h-screen">
         <canvas ref="raindrops" :width="width" :height="height" class="h-screen" />
       </div>
@@ -127,7 +127,7 @@ const stopAnimation = ([{ isIntersecting }]: [{isIntersecting: boolean}]) => {
       </section>
     </section>
 
-    <section>
+    <section class="h-[1000px]">
       <TourDates />
     </section>
   </main>

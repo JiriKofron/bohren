@@ -26,7 +26,7 @@ const toggleMenu = () => {
         </div>
       </div>
       <div
-        class="hidden md:flex flex-auto items-center justify-around max-w-lg"
+        class="hidden md:flex flex-auto items-center text-2xl justify-around max-w-xl gap-x-8 mr-8"
       >
         <NuxtLink
           v-for="menuItem in menuItems"

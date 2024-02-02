@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import type { Ref } from 'vue'
+
 const config = useRuntimeConfig()
 
-const concerts = ref()
+interface Concert {
+  Id: string
+  attributes: {
+    Name: string
+    Date: string
+    Description: string
+  }
+}
+
+const concerts: Ref<Concert[] | null> = ref(null)
 const { data } = useAsyncData('venues', () => $fetch(`${config.strapiUrl}/api/concerts`, {
   headers: {
     Authorization: `Bearer ${config.publicToken}`
@@ -16,8 +27,6 @@ concerts.value = data.value?.data
     <h1>
       Tour dates
     </h1>
-
-    {{ concerts }}
 
     <article v-for="concert in concerts" :key="concert.id">
       {{ concert.attributes.Name }}
