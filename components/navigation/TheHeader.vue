@@ -2,6 +2,7 @@
 import data from '@/data/menuItem.json'
 import type { MenuItem } from '~/types/types'
 import HamburgerMenu from '~/components/navigation/HamburgerMenu.vue'
+
 const { locale } = useI18n()
 const localePath = useLocalePath()
 
@@ -25,7 +26,7 @@ const toggleMenu = () => {
         </div>
       </div>
       <div
-        class="hidden md:flex flex-auto items-center justify-around max-w-lg"
+        class="hidden md:flex flex-auto items-center text-2xl justify-around max-w-xl gap-x-8 mr-8"
       >
         <NuxtLink
           v-for="menuItem in menuItems"
@@ -39,7 +40,7 @@ const toggleMenu = () => {
       <!--      <LangSwitch />-->
 
       <button
-        class="font-heading text-2xl outline outline-1 outline-white outline-offset-1 px-3"
+        class=" md:hidden font-heading text-2xl outline outline-1 outline-white outline-offset-1 px-3"
         @click="toggleMenu"
       >
         MENU

@@ -22,3 +22,9 @@ logs
 .env
 .env.*
 !.env.example
+
+# Strapi
+/strapi/bohren-strapi/node_modules
+/strapi/bohren-strapi/.env
+/strapi/bohren-strapi/.gitignore
+/strapi/bohren-strapi/dist
