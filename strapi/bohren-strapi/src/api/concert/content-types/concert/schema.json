@@ -29,6 +29,9 @@
       "relation": "manyToMany",
       "target": "api::venue.venue",
       "mappedBy": "concerts"
+    },
+    "soldOut": {
+      "type": "boolean"
     }
   }
 }

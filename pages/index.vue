@@ -127,7 +127,8 @@ const stopAnimation = ([{ isIntersecting }]: [{isIntersecting: boolean}]) => {
       </section>
     </section>
 
-    <section class="h-[1000px]">
+    <section>
+      <NextTour />
       <TourDates />
     </section>
   </main>

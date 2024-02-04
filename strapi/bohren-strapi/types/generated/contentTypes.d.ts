@@ -788,6 +788,7 @@ export interface ApiConcertConcert extends Schema.CollectionType {
       'manyToMany',
       'api::venue.venue'
     >;
+    soldOut: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -826,6 +827,7 @@ export interface ApiVenueVenue extends Schema.CollectionType {
       'manyToMany',
       'api::concert.concert'
     >;
+    website: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
