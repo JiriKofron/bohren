@@ -9,6 +9,9 @@ export default {
     extend: {
       colors: {
         'default-red': '#cf2e2e'
+      },
+      fontSize: {
+        clamp: 'clamp(3rem, 10vw, 8rem)'
       }
     },
     fontFamily: {

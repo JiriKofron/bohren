@@ -12,12 +12,16 @@ interface Concert {
   }
 }
 
+console.log('config', config)
+
 const concerts: Ref<Concert[] | null> = ref(null)
-const { data } = useAsyncData('venues', () => $fetch(`${config.strapiUrl}/api/concerts`, {
+const { data } = useAsyncData('venues', () => $fetch(`${config.strapiLocalUrl}/api/concerts?populate=*`, {
   headers: {
-    Authorization: `Bearer ${config.publicToken}`
+    Authorization: `Bearer ${config.publicBearerToken}`
   }
 }))
+
+console.log('dataa', data)
 
 concerts.value = data.value?.data
 </script>
@@ -28,9 +32,49 @@ concerts.value = data.value?.data
       Tour dates
     </h1>
 
-    <article v-for="concert in concerts" :key="concert.id">
-      {{ concert.attributes.Name }}
-    </article>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            Place
+          </th>
+          <th>
+            Tickets
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="concert in concerts"
+          :key="concert.id"
+        >
+          <th>{{ concert.attributes.Name }}</th>
+          <td>
+            {{ new Date(concert.attributes.Date).toLocaleDateString('en-GB', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric'
+            }) }}
+          </td>
+
+          <td>
+            {{ concert.attributes.venues.data[0].attributes.Name }}
+          </td>
+          <td>
+            <button>Tickets</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </template>
 
